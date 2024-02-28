@@ -20,9 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $paeseNascita = $_POST["paese_nascita"];
     $altezza = $_POST["altezza"];
     $peso = $_POST["peso"];
+    $season = $_POST["season"];
+    $partite_giocate = $_POST["partite_giocate"];
+    $media_punti = $_POST["media_punti"];
+    $rimbalzi = $_POST["rimbalzi"];
+    $assist = $_POST["assist"];
+    $percentuale_campo = $_POST["percentuale_campo"];
+    $percentuale_da3 = $_POST["percentuale_da3"];
+    $percentuale_tiro_libero = $_POST["percentuale_tiro_libero"];
 
-    $stmt = $conn->prepare("INSERT INTO dati_atleta (nome, cognome, data_nascita, paese_nascita, altezza, peso) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssii", $nome, $cognome, $dataNascita, $paeseNascita, $altezza, $peso);
+    $stmt = $conn->prepare("INSERT INTO dati_atleta (nome, cognome, data_nascita, paese_nascita, altezza, peso, stagione, partite_giocate, media_punti, rimbalzi, assist, percentuale_campo, percentuale_da3, percentuale_tiro_libero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssiiisiiiddd", $nome, $cognome, $dataNascita, $paeseNascita, $altezza, $peso, $season, $partite_giocate, $media_punti, $rimbalzi, $assist, $percentuale_campo, $percentuale_da3, $percentuale_tiro_libero);
 
     if ($stmt->execute()) {
         $message = "Dati atleta aggiunti con successo!";
@@ -34,13 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aggiungi Dati Atleta - Progetto Basket</title>
-    <style>
+<style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -71,7 +79,7 @@ $conn->close();
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            margin-top: 20px; /* Spazio in basso */
+            margin-top: 20px; 
         }
 
         button:hover {
@@ -109,6 +117,30 @@ $conn->close();
 
         <label for="peso">Peso (kg):</label>
         <input type="number" id="peso" name="peso" required>
+        
+        <label for="season">Stagione:</label>
+        <input type="text" id="season" name="season" required>
+
+        <label for="partite_giocate">Partite Giocate:</label>
+        <input type="number" id="partite_giocate" name="partite_giocate" required>
+
+        <label for="media_punti">Media Punti:</label>
+        <input type="number" step="0.1" id="media_punti" name="media_punti" required>
+
+        <label for="rimbalzi">Rimbalzi:</label>
+        <input type="number" id="rimbalzi" name="rimbalzi" required>
+
+        <label for="assist">Assist:</label>
+        <input type="number" id="assist" name="assist" required>
+
+        <label for="percentuale_campo">Percentuale dal Campo:</label>
+        <input type="number" step="0.1" id="percentuale_campo" name="percentuale_campo" required>
+
+        <label for="percentuale_da3">Percentuale da 3:</label>
+        <input type="number" step="0.1" id="percentuale_da3" name="percentuale_da3" required>
+
+        <label for="percentuale_tiro_libero">Percentuale Tiro Libero:</label>
+        <input type="number" step="0.1" id="percentuale_tiro_libero" name="percentuale_tiro_libero" required>
 
         <button type="submit">Aggiungi Dati Atleta</button>
     </form>

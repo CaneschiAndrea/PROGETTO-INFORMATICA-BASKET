@@ -51,9 +51,9 @@
     <a href="visualizza_dati_atleta.php">Visualizza dati atleta</a>
     <a href="visualizza_dati_partita.php">Visualizza dati partita</a>
     <a href="inserisci_partita.php">Inserisci partita</a>
-    <a href="confronta_due_atleti.php">Confronta due atleti</a>
+    <a href="confronta_atleti.php">Confronta due atleti</a>
 
-    <a href="aggiungi_dati_atleta.php">Aggiungi dati atleta</a>
+    <a href="aggiungi_dati_atleta.php">Aggiungi dati atleta</a> 
 
     <a href="login.php" class="logout-button">Logout</a>
 </div>

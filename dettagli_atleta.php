@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
         }
 
         .dettagli-container {
-            max-width: 400px;
+            max-width: 600px; /* Aumentato per gestire più colonne */
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
@@ -123,6 +123,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     <p><strong>Paese di Nascita:</strong> <?php echo $atleta['paese_nascita']; ?></p>
     <p><strong>Altezza:</strong> <?php echo $atleta['altezza']; ?> cm</p>
     <p><strong>Peso:</strong> <?php echo $atleta['peso']; ?> kg</p>
+    <p><strong>Stagione:</strong> <?php echo $atleta['stagione']; ?></p>
+    <p><strong>Partite Giocate:</strong> <?php echo $atleta['partite_giocate']; ?></p>
+    <p><strong>Media Punti:</strong> <?php echo $atleta['media_punti']; ?></p>
+    <p><strong>Rimbalzi:</strong> <?php echo $atleta['rimbalzi']; ?></p>
+    <p><strong>Assist:</strong> <?php echo $atleta['assist']; ?></p>
+    <p><strong>Percentuale Campo:</strong> <?php echo $atleta['percentuale_campo']; ?></p>
+    <p><strong>Percentuale da 3:</strong> <?php echo $atleta['percentuale_da3']; ?></p>
+    <p><strong>Percentuale Tiro Libero:</strong> <?php echo $atleta['percentuale_tiro_libero']; ?></p>
 
     <?php if (!empty($message)) : ?>
         <p class="<?php echo (strpos($message, 'success') !== false) ? 'success' : 'error'; ?>"><?php echo $message; ?></p>
