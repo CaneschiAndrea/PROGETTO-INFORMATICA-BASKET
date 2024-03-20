@@ -26,11 +26,12 @@
         a {
             display: block;
             margin: 10px 0;
-            padding: 10px;
+            padding: 12px 20px;
             background-color: #4caf50; /* Colore di sfondo dei pulsanti */
             color: #fff; /* Colore del testo dei pulsanti */
             text-decoration: none;
             border-radius: 4px;
+            transition: background-color 0.3s ease; /* Effetto di transizione */
         }
 
         a:hover {
@@ -39,7 +40,6 @@
 
         .logout-button {
             background-color: #f44336; /* Colore di sfondo del pulsante di logout */
-            color: #fff; /* Colore del testo del pulsante di logout */
         }
 
         .logout-button:hover {
@@ -60,10 +60,16 @@
             text-align: center;
             cursor: pointer;
             text-decoration: none;
+            transition: background-color 0.3s ease; /* Effetto di transizione */
         }
 
         .info-button:hover {
             background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #4caf50; /* Colore del titolo */
         }
     </style>
 </head>
@@ -79,6 +85,7 @@
     <a href="confronta_atleti.php">Confronta due atleti</a>
     <a href="aggiungi_dati_atleta.php">Aggiungi dati atleta</a> 
     <a href="aggiungi_squadra.php">Aggiungi squadra</a>
+    <a href="calendario.php">Calendario Partite</a>
     <a href="index.php" class="logout-button">Logout</a>
     <!-- Bottone con punto interrogativo -->
     <a href="informazioni.php" class="info-button">?</a>
