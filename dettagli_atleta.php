@@ -114,6 +114,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
         .back-button:hover {
             background-color: #2980b9; /* Blu più scuro al passaggio del mouse */
         }
+
+        .edit-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #4caf50; /* Verde scuro */
+            color: #fff; /* Testo bianco */
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .edit-button:hover {
+            background-color: #45a049; /* Verde più scuro al passaggio del mouse */
+        }
     </style>
 </head>
 <body>
@@ -142,12 +157,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     <form method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questi dati?');">
         <input type="hidden" name="delete">
         <button type="submit" class="delete-button">Elimina Dati Atleta</button>    
-    </form>
-    <br>
+    </form>     
 
     <form action="modifica_atleta.php" method="get">
     <input type="hidden" name="id" value="<?php echo $atleta_id; ?>">
-    <button type="submit">Modifica Atleta</button>
+    <button type="submit" class="edit-button">Modifica Atleta</button>
 </form>
 
 

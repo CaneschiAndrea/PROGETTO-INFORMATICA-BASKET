@@ -11,6 +11,7 @@
             color: #fff; /* Colore del testo */
             text-align: center;
             padding: 40px;
+            position: relative; /* Per posizionare l'elemento figlio in base a questa posizione */
         }
 
         .scelta-container {
@@ -44,6 +45,26 @@
         .logout-button:hover {
             background-color: #d32f2f; /* Cambia il colore di sfondo del pulsante di logout al passaggio del mouse */
         }
+
+        .info-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #4caf50; /* Colore di sfondo del pulsante */
+            color: #fff; /* Colore del testo del pulsante */
+            border-radius: 50%; /* Per rendere il pulsante un cerchio */
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .info-button:hover {
+            background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
+        }
     </style>
 </head>
 <body>
@@ -54,10 +75,10 @@
     <a href="visualizza_dati_partita.php">Visualizza dati partita</a>
     <a href="inserisci_partita.php">Inserisci partita</a>
     <a href="confronta_atleti.php">Confronta due atleti</a>
-
     <a href="aggiungi_dati_atleta.php">Aggiungi dati atleta</a> 
-
     <a href="index.php" class="logout-button">Logout</a>
+    <!-- Bottone con punto interrogativo -->
+    <a href="informazioni.php" class="info-button">?</a>
 </div>
 
 </body>
