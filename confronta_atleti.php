@@ -19,29 +19,39 @@ $message = "";
 $atleta1 = $atleta2 = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $atleta1_id = $_POST["atleta1"];
-    $atleta2_id = $_POST["atleta2"];
+    // Validazione dei dati
+    $atleta1_id = isset($_POST["atleta1"]) ? $_POST["atleta1"] : null;
+    $atleta2_id = isset($_POST["atleta2"]) ? $_POST["atleta2"] : null;
 
-    // Ottenere i dati del primo atleta
-    $stmt_atleta1 = $conn->prepare("SELECT * FROM dati_atleta WHERE id = ?");
-    $stmt_atleta1->bind_param("i", $atleta1_id);
-    $stmt_atleta1->execute();
-    $result_atleta1 = $stmt_atleta1->get_result();
+    if ($atleta1_id && $atleta2_id) {
+        // Ottenere i dati del primo atleta
+        $stmt_atleta1 = $conn->prepare("SELECT * FROM dati_atleta WHERE id = ?");
+        $stmt_atleta1->bind_param("i", $atleta1_id);
+        $stmt_atleta1->execute();
+        $result_atleta1 = $stmt_atleta1->get_result();
 
-    // Ottenere i dati del secondo atleta
-    $stmt_atleta2 = $conn->prepare("SELECT * FROM dati_atleta WHERE id = ?");
-    $stmt_atleta2->bind_param("i", $atleta2_id);
-    $stmt_atleta2->execute();
-    $result_atleta2 = $stmt_atleta2->get_result();
+        // Ottenere i dati del secondo atleta
+        $stmt_atleta2 = $conn->prepare("SELECT * FROM dati_atleta WHERE id = ?");
+        $stmt_atleta2->bind_param("i", $atleta2_id);
+        $stmt_atleta2->execute();
+        $result_atleta2 = $stmt_atleta2->get_result();
 
-    if ($result_atleta1->num_rows > 0 && $result_atleta2->num_rows > 0) {
-        $atleta1 = $result_atleta1->fetch_assoc();
-        $atleta2 = $result_atleta2->fetch_assoc();
+        if ($result_atleta1->num_rows > 0 && $result_atleta2->num_rows > 0) {
+            $atleta1 = $result_atleta1->fetch_assoc();
+            $atleta2 = $result_atleta2->fetch_assoc();
+
+            // Escludi il campo "paese_di_nascita" dagli array dei dati
+            unset($atleta1['paese_di_nascita']);
+            unset($atleta2['paese_di_nascita']);
+        } else {
+            $message = "Seleziona due atleti validi.";
+        }
     } else {
-        $message = "Seleziona due atleti validi.";
+        $message = "Seleziona due atleti.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="it">
@@ -118,16 +128,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #2980b9;
         }
 
-        .success {
-            color: green;
-        }
-
         .error {
             color: red;
         }
 
         .valore-maggiore {
             background-color: #aaffaa;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
         }
     </style>
 </head>
@@ -141,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select id="atleta1" name="atleta1" required>
             <?php
             while ($row = $result_atleti->fetch_assoc()) {
-                echo "<option value='" . $row['id'] . "'>" . $row['nome'] . " " . $row['cognome'] . "</option>";
+                echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['nome'] . " " . $row['cognome']) . "</option>";
             }
             ?>
         </select>
@@ -152,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Riposiziona il puntatore del risultato per la seconda select
             $result_atleti->data_seek(0);
             while ($row = $result_atleti->fetch_assoc()) {
-                echo "<option value='" . $row['id'] . "'>" . $row['nome'] . " " . $row['cognome'] . "</option>";
+                echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['nome'] . " " . $row['cognome']) . "</option>";
             }
             ?>
         </select>
@@ -161,109 +178,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <?php if (!empty($message)) : ?>
-        <p class="error"><?php echo $message; ?></p>
+        <p class="error"><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
 
-    <?php if (isset($atleta1) && isset($atleta2)) : ?>
+    <?php if (!empty($atleta1) && !empty($atleta2)) : ?>
         <div class="result-container">
             <h3>Risultati del Confronto:</h3>
 
-            <table style="width:100%; border-collapse: collapse;">
+            <table>
                 <tr>
                     <th>Statistica</th>
                     <th><?php echo $atleta1['nome']; ?></th>
                     <th><?php echo $atleta2['nome']; ?></th>
                 </tr>
 
-                <tr>
-                    <td>Altezza</td>
-                    <td class="<?php echo ($atleta1['altezza'] > $atleta2['altezza']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['altezza']; ?> cm
-                    </td>
-                    <td class="<?php echo ($atleta2['altezza'] > $atleta1['altezza']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['altezza']; ?> cm
-                    </td>
-                </tr>
+                <?php
+                // Array associativo dei dati degli atleti
+                $atleta1_data = array_slice($atleta1, 3); // Rimuovi id, nome e cognome
+                $atleta2_data = array_slice($atleta2, 3); // Rimuovi id, nome e cognome
 
-                <tr>
-                    <td>Peso</td>
-                    <td class="<?php echo ($atleta1['peso'] > $atleta2['peso']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['peso']; ?> kg
-                    </td>
-                    <td class="<?php echo ($atleta2['peso'] > $atleta1['peso']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['peso']; ?> kg
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Partite Giocate</td>
-                    <td class="<?php echo ($atleta1['partite_giocate'] > $atleta2['partite_giocate']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['partite_giocate']; ?>
-                    </td>
-                    <td class="<?php echo ($atleta2['partite_giocate'] > $atleta1['partite_giocate']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['partite_giocate']; ?>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Media Punti</td>
-                    <td class="<?php echo ($atleta1['media_punti'] > $atleta2['media_punti']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['media_punti']; ?>
-                    </td>
-                    <td class="<?php echo ($atleta2['media_punti'] > $atleta1['media_punti']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['media_punti']; ?>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Rimbalzi</td>
-                    <td class="<?php echo ($atleta1['rimbalzi'] > $atleta2['rimbalzi']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['rimbalzi']; ?>
-                    </td>
-                    <td class="<?php echo ($atleta2['rimbalzi'] > $atleta1['rimbalzi']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['rimbalzi']; ?>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Assist</td>
-                    <td class="<?php echo ($atleta1['assist'] > $atleta2['assist']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['assist']; ?>
-                    </td>
-                    <td class="<?php echo ($atleta2['assist'] > $atleta1['assist']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['assist']; ?>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Percentuale Campo</td>
-                    <td class="<?php echo ($atleta1['percentuale_campo'] > $atleta2['percentuale_campo']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['percentuale_campo']; ?>%
-                    </td>
-                    <td class="<?php echo ($atleta2['percentuale_campo'] > $atleta1['percentuale_campo']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['percentuale_campo']; ?>%
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Percentuale da 3</td>
-                    <td class="<?php echo ($atleta1['percentuale_da3'] > $atleta2['percentuale_da3']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['percentuale_da3']; ?>%
-                    </td>
-                    <td class="<?php echo ($atleta2['percentuale_da3'] > $atleta1['percentuale_da3']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['percentuale_da3']; ?>%
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Percentuale Tiro Libero</td>
-                    <td class="<?php echo ($atleta1['percentuale_tiro_libero'] > $atleta2['percentuale_tiro_libero']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta1['percentuale_tiro_libero']; ?>%
-                    </td>
-                    <td class="<?php echo ($atleta2['percentuale_tiro_libero'] > $atleta1['percentuale_tiro_libero']) ? 'valore-maggiore' : ''; ?>">
-                        <?php echo $atleta2['percentuale_tiro_libero']; ?>%
-                    </td>
-                </tr>
+                // Ciclo attraverso i dati e confronto
+                foreach ($atleta1_data as $stat => $value1) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($stat) . "</td>";
+                    echo "<td class='" . (($value1 > $atleta2_data[$stat]) ? 'valore-maggiore' : '') . "'>" . htmlspecialchars($value1) . "</td>";
+                    echo "<td class='" . (($atleta2_data[$stat] > $value1) ? 'valore-maggiore' : '') . "'>" . htmlspecialchars($atleta2_data[$stat]) . "</td>";
+                    echo "</tr>";
+                }
+                ?>
 
             </table>
         </div>

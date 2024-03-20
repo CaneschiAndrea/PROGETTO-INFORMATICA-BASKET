@@ -55,7 +55,7 @@
 
     <a href="aggiungi_dati_atleta.php">Aggiungi dati atleta</a> 
 
-    <a href="login.php" class="logout-button">Logout</a>
+    <a href="index.php" class="logout-button">Logout</a>
 </div>
 
 </body>

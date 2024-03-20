@@ -128,7 +128,7 @@ $conn->close();
         <button type="submit">Aggiungi</button>
     </form>
     <p><?php echo $message; ?></p>
-    <p>Hai già un account? <a href="login.php">Effettua il login qui</a>.</p>
+    <p>Hai già un account? <a href="index.php">Effettua il login qui</a>.</p>
 </div>
 
 </body>

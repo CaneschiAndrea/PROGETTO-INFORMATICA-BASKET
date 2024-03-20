@@ -138,8 +138,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
 
     <form method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questi dati?');">
         <input type="hidden" name="delete">
-        <button type="submit" class="delete-button">Elimina Dati Atleta</button>
+        <button type="submit" class="delete-button">Elimina Dati Atleta</button>    
     </form>
+    <br>
+
+    <form action="modifica_atleta.php" method="get">
+    <input type="hidden" name="id" value="<?php echo $atleta_id; ?>">
+    <button type="submit">Modifica Atleta</button>
+</form>
+
+
 
     <a href="scelta.php" class="back-button">Torna a Scelta</a>
 
