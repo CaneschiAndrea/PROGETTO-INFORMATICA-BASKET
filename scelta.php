@@ -87,7 +87,6 @@
     <a href="aggiungi_squadra.php">Aggiungi squadra</a>
     <a href="calendario.php">Calendario Partite</a>
     <a href="index.php" class="logout-button">Logout</a>
-    <!-- Bottone con punto interrogativo -->
     <a href="informazioni.php" class="info-button">?</a>
 </div>
 
@@ -101,10 +100,8 @@
         clockElement.textContent = hours + ':' + minutes + ':' + seconds;
     }
 
-    // Aggiorna l'orologio ogni secondo
     setInterval(updateClock, 1000);
 
-    // Esegui un'aggiornamento immediato
     updateClock();
 </script>
 

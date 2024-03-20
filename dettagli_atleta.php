@@ -32,16 +32,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit();
 }
 
-// Gestione dell'eliminazione
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $stmt_delete = $conn->prepare("DELETE FROM dati_atleta WHERE id = ?");
     $stmt_delete->bind_param("i", $atleta_id);
 
     if ($stmt_delete->execute()) {
         $message = "Dati atleta eliminati con successo!";
-        // Puoi anche reindirizzare l'utente a una pagina di conferma o altrove dopo l'eliminazione
-        // header("Location: conferma_eliminazione.php");
-        // exit();
+        
     } else {
         $message = "Errore durante l'eliminazione dei dati. Riprova.";
     }

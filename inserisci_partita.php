@@ -13,7 +13,6 @@ if ($conn->connect_error) {
 
 $message = "";
 
-// Query per recuperare le squadre esistenti
 $query = "SELECT nome_squadra FROM squadre";
 $result = $conn->query($query);
 $squadre = [];
@@ -24,7 +23,6 @@ if ($result->num_rows > 0) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Gestione del submit del form
     $squadra1 = $_POST["squadra1"];
     $squadra2 = $_POST["squadra2"];
     $punteggioSquadra1 = $_POST["punteggio_squadra1"];

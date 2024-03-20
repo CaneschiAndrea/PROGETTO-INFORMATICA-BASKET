@@ -19,12 +19,10 @@ $result = $conn->query($query);
 $partita = $result->fetch_assoc();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Se confermato, elimina la partita
     $stmt = $conn->prepare("DELETE FROM partite WHERE id = ?");
     $stmt->bind_param("i", $id_partita);
 
     if ($stmt->execute()) {
-        // Reindirizza alla pagina delle partite dopo l'eliminazione
         header("Location: visualizza_dati_partita.php");
         exit();
     } else {

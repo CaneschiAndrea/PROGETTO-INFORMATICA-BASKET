@@ -11,7 +11,6 @@ if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-// Ottenere la lista di atleti per il menu a discesa
 $sql_atleti = "SELECT id, nome, cognome FROM dati_atleta";
 $result_atleti = $conn->query($sql_atleti);
 
@@ -19,18 +18,15 @@ $message = "";
 $atleta1 = $atleta2 = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validazione dei dati
     $atleta1_id = isset($_POST["atleta1"]) ? $_POST["atleta1"] : null;
     $atleta2_id = isset($_POST["atleta2"]) ? $_POST["atleta2"] : null;
 
     if ($atleta1_id && $atleta2_id) {
-        // Ottenere i dati del primo atleta
         $stmt_atleta1 = $conn->prepare("SELECT * FROM dati_atleta WHERE id = ?");
         $stmt_atleta1->bind_param("i", $atleta1_id);
         $stmt_atleta1->execute();
         $result_atleta1 = $stmt_atleta1->get_result();
 
-        // Ottenere i dati del secondo atleta
         $stmt_atleta2 = $conn->prepare("SELECT * FROM dati_atleta WHERE id = ?");
         $stmt_atleta2->bind_param("i", $atleta2_id);
         $stmt_atleta2->execute();
@@ -40,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $atleta1 = $result_atleta1->fetch_assoc();
             $atleta2 = $result_atleta2->fetch_assoc();
 
-            // Escludi il campo "paese_di_nascita" dagli array dei dati
             unset($atleta1['paese_di_nascita']);
             unset($atleta2['paese_di_nascita']);
         } else {
@@ -177,7 +172,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="atleta2">Seleziona il secondo atleta:</label>
         <select id="atleta2" name="atleta2" required>
             <?php
-            // Riposiziona il puntatore del risultato per la seconda select
             $result_atleti->data_seek(0);
             while ($row = $result_atleti->fetch_assoc()) {
                 echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['nome'] . " " . $row['cognome']) . "</option>";
@@ -204,11 +198,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>
 
                 <?php
-                // Array associativo dei dati degli atleti
-                $atleta1_data = array_slice($atleta1, 3); // Rimuovi id, nome e cognome
-                $atleta2_data = array_slice($atleta2, 3); // Rimuovi id, nome e cognome
+                $atleta1_data = array_slice($atleta1, 3); 
+                $atleta2_data = array_slice($atleta2, 3); 
 
-                // Ciclo attraverso i dati e confronto
                 foreach ($atleta1_data as $stat => $value1) {
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($stat) . "</td>";

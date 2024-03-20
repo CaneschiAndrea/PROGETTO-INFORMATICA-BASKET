@@ -13,17 +13,14 @@ if ($conn->connect_error) {
 
 $message = "";
 
-// Controllo se è stato passato l'ID dell'atleta
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $atleta_id = $_GET['id'];
 
-    // Query per ottenere i dettagli dell'atleta
     $stmt = $conn->prepare("SELECT * FROM dati_atleta WHERE id = ?");
     $stmt->bind_param("i", $atleta_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Verifica se l'atleta è stato trovato
     if ($result->num_rows > 0) {
         $atleta = $result->fetch_assoc();
     } else {
@@ -31,12 +28,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         exit();
     }
 } else {
-    // Messaggio di errore se l'ID atleta non è specificato o non è un numero valido
     echo "ID atleta non specificato o non valido.";
     exit();
 }
 
-// Gestione dell'eliminazione
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $stmt_delete = $conn->prepare("DELETE FROM dati_atleta WHERE id = ?");
     $stmt_delete->bind_param("i", $atleta_id);
@@ -48,11 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     }
 }
 
-// Gestione del salvataggio dei dati
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
-    // Assicurati che tutti i campi siano stati inviati correttamente
     if (!empty($_POST['nome']) && !empty($_POST['cognome']) && !empty($_POST['data_nascita']) && !empty($_POST['paese_nascita']) && !empty($_POST['altezza']) && !empty($_POST['peso']) && !empty($_POST['stagione']) && !empty($_POST['partite_giocate']) && !empty($_POST['media_punti']) && !empty($_POST['rimbalzi']) && !empty($_POST['assist']) && !empty($_POST['percentuale_campo']) && !empty($_POST['percentuale_da3']) && !empty($_POST['percentuale_tiro_libero'])) {
-        // Aggiorna i dati dell'atleta nel database con i nuovi valori
         $nome = $_POST['nome'];
         $cognome = $_POST['cognome'];
         $data_nascita = $_POST['data_nascita'];

@@ -5,29 +5,22 @@ $username = "root";
 $password = "";
 $port = 3306;
 
-// Connessione al database
 $conn = new mysqli($servername, $username, $password, $database, $port);
 
-// Verifica della connessione
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-// Variabile per il messaggio di feedback
 $message = "";
 
-// Gestione del submit del form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verifica se i campi sono stati compilati
     if (!empty($_POST['nome_squadra']) && !empty($_POST['citta'])) {
         $nome_squadra = $_POST['nome_squadra'];
         $citta = $_POST['citta'];
 
-        // Prepara la query per l'inserimento della nuova squadra
         $stmt = $conn->prepare("INSERT INTO squadre (nome_squadra, citta) VALUES (?, ?)");
         $stmt->bind_param("ss", $nome_squadra, $citta);
 
-        // Esecuzione della query
         if ($stmt->execute()) {
             $message = "Squadra aggiunta con successo!";
         } else {
