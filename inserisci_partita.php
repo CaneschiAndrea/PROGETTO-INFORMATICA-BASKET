@@ -114,7 +114,7 @@ $conn->close();
 
 <div class="form-container">
     <h2>Aggiungi Partita</h2>
-    <form action="aggiungi_partita.php" method="post">
+    <form method="post">
         <label for="squadra1">Squadra 1:</label>
         <select id="squadra1" name="squadra1" required>
             <?php foreach($squadre as $squadra): ?>
@@ -145,13 +145,10 @@ $conn->close();
 
         <button type="submit">Aggiungi Partita</button>
     </form>
-    <?php
-    if (!empty($message)) {
-        echo "<p>$message</p>";
-    }
-    ?>
+    <p><?php echo $message; ?></p>
 </div>
 <br>
 <a href="scelta.php" class="back-button">Torna a Scelta</a>
+
 </body>
 </html>

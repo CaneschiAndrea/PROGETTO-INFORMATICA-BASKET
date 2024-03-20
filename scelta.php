@@ -69,6 +69,8 @@
 </head>
 <body>
 
+<div style="font-size: 24px; margin-bottom: 20px;" id="clock">Loading...</div>
+
 <div class="scelta-container">
     <h2>Scegli un'opzione</h2>
     <a href="visualizza_dati_atleta.php">Visualizza dati atleta</a>
@@ -81,6 +83,23 @@
     <!-- Bottone con punto interrogativo -->
     <a href="informazioni.php" class="info-button">?</a>
 </div>
+
+<script>
+    function updateClock() {
+        var now = new Date();
+        var hours = now.getHours().toString().padStart(2, '0');
+        var minutes = now.getMinutes().toString().padStart(2, '0');
+        var seconds = now.getSeconds().toString().padStart(2, '0');
+        var clockElement = document.getElementById('clock');
+        clockElement.textContent = hours + ':' + minutes + ':' + seconds;
+    }
+
+    // Aggiorna l'orologio ogni secondo
+    setInterval(updateClock, 1000);
+
+    // Esegui un'aggiornamento immediato
+    updateClock();
+</script>
 
 </body>
 </html>
