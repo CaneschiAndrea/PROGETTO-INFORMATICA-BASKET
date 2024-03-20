@@ -13,7 +13,18 @@ if ($conn->connect_error) {
 
 $message = "";
 
+// Query per recuperare le squadre esistenti
+$query = "SELECT nome_squadra FROM squadre";
+$result = $conn->query($query);
+$squadre = [];
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $squadre[] = $row["nome_squadra"];
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Gestione del submit del form
     $squadra1 = $_POST["squadra1"];
     $squadra2 = $_POST["squadra2"];
     $punteggioSquadra1 = $_POST["punteggio_squadra1"];
@@ -105,11 +116,21 @@ $conn->close();
     <h2>Aggiungi Partita</h2>
     <form action="aggiungi_partita.php" method="post">
         <label for="squadra1">Squadra 1:</label>
-        <input type="text" id="squadra1" name="squadra1" required>
-
+        <select id="squadra1" name="squadra1" required>
+            <?php foreach($squadre as $squadra): ?>
+                <option value="<?php echo $squadra; ?>"><?php echo $squadra; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <br>
+        <br>
         <label for="squadra2">Squadra 2:</label>
-        <input type="text" id="squadra2" name="squadra2" required>
-
+        <select id="squadra2" name="squadra2" required>
+            <?php foreach($squadre as $squadra): ?>
+                <option value="<?php echo $squadra; ?>"><?php echo $squadra; ?></option>
+            <?php endforeach; ?>
+        </select>
+                <br>
+                <br>
         <label for="punteggio_squadra1">Punteggio Squadra 1:</label>
         <input type="number" id="punteggio_squadra1" name="punteggio_squadra1" required>
 
@@ -130,6 +151,7 @@ $conn->close();
     }
     ?>
 </div>
-
+<br>
+<a href="scelta.php" class="back-button">Torna a Scelta</a>
 </body>
 </html>

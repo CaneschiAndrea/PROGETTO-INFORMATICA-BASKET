@@ -76,6 +76,7 @@
     <a href="inserisci_partita.php">Inserisci partita</a>
     <a href="confronta_atleti.php">Confronta due atleti</a>
     <a href="aggiungi_dati_atleta.php">Aggiungi dati atleta</a> 
+    <a href="aggiungi_squadra.php">Aggiungi squadra</a>
     <a href="index.php" class="logout-button">Logout</a>
     <!-- Bottone con punto interrogativo -->
     <a href="informazioni.php" class="info-button">?</a>
