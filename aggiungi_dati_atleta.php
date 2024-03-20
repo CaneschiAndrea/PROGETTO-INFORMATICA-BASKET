@@ -51,7 +51,8 @@ $conn->close();
 <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212; /* Colore di sfondo scuro */
+            color: #fff; /* Colore del testo */
             text-align: center;
             padding: 40px;
         }
@@ -59,7 +60,7 @@ $conn->close();
         .form-container {
             max-width: 400px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: #1f1f1f; /* Colore di sfondo della container */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -70,6 +71,14 @@ $conn->close();
             padding: 10px;
             margin: 8px 0;
             box-sizing: border-box;
+            background-color: #272727; /* Colore di sfondo degli input */
+            color: #fff; /* Colore del testo degli input */
+            border: none; /* Rimuove il bordo */
+            border-radius: 4px;
+        }
+
+        input:focus {
+            outline: none; /* Rimuove il focus border */
         }
 
         button {
@@ -83,7 +92,7 @@ $conn->close();
         }
 
         button:hover {
-            background-color: #d32f2f;
+            background-color: #45a049;
         }
 
         p {
@@ -92,6 +101,18 @@ $conn->close();
 
         .error {
             color: red;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a button {
+            background-color: #f44336; /* Colore di sfondo del pulsante */
+        }
+
+        a button:hover {
+            background-color: #d32f2f; /* Cambia il colore di sfondo al passaggio del mouse */
         }
     </style>
 </head>

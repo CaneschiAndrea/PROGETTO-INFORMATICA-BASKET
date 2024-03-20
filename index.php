@@ -50,7 +50,8 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212; /* Colore di sfondo scuro */
+            color: #fff; /* Colore del testo */
             text-align: center;
             padding: 40px;
         }
@@ -58,7 +59,7 @@ $conn->close();
         .login-container {
             max-width: 400px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: #1f1f1f; /* Colore di sfondo della container */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -69,11 +70,19 @@ $conn->close();
             padding: 10px;
             margin: 8px 0;
             box-sizing: border-box;
+            background-color: #272727; /* Colore di sfondo degli input */
+            color: #fff; /* Colore del testo degli input */
+            border: none; /* Rimuove il bordo */
+            border-radius: 4px;
+        }
+
+        input:focus {
+            outline: none; /* Rimuove il focus border */
         }
 
         button {
-            background-color: #4caf50;
-            color: white;
+            background-color: #0d6efd; /* Colore di sfondo del pulsante */
+            color: #fff; /* Colore del testo del pulsante */
             padding: 12px 20px;
             border: none;
             border-radius: 4px;
@@ -81,12 +90,12 @@ $conn->close();
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #0b5ed7; /* Cambia il colore di sfondo al passaggio del mouse */
         }
 
         a {
             text-decoration: none;
-            color: #4caf50;
+            color: #0d6efd; /* Colore del link */
         }
     </style>
 </head>

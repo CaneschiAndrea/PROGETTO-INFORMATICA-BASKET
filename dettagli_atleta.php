@@ -57,27 +57,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #222; /* Colore di sfondo scuro */
+            color: #fff; /* Testo bianco */
             text-align: center;
             padding: 40px;
+            margin: 0;
         }
 
         .dettagli-container {
-            max-width: 600px; /* Aumentato per gestire più colonne */
+            max-width: 600px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: #333; /* Colore di sfondo più scuro */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Ombra con opacità */
         }
 
         p {
             text-align: left;
+            color: #fff; /* Testo bianco */
         }
 
         .delete-button {
-            background-color: #f44336;
-            color: white;
+            background-color: #f44336; /* Rosso scuro */
+            color: #fff; /* Testo bianco */
             padding: 12px 20px;
             border: none;
             border-radius: 4px;
@@ -86,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
         }
 
         .delete-button:hover {
-            background-color: #d32f2f;
+            background-color: #d32f2f; /* Rosso più scuro al passaggio del mouse */
         }
 
         .success {
@@ -101,22 +104,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
             display: inline-block;
             margin-top: 20px;
             padding: 12px 20px;
-            background-color: #3498db;
-            color: white;
+            background-color: #3498db; /* Blu scuro */
+            color: #fff; /* Testo bianco */
             text-decoration: none;
             border-radius: 4px;
             cursor: pointer;
         }
 
         .back-button:hover {
-            background-color: #2980b9;
+            background-color: #2980b9; /* Blu più scuro al passaggio del mouse */
         }
     </style>
 </head>
 <body>
 
 <div class="dettagli-container">
-    <h2>Dettagli Atleta</h2>
+    <h2 style="color: green">Dettagli Atleta</h2>
     <p><strong>Nome:</strong> <?php echo $atleta['nome']; ?></p>
     <p><strong>Cognome:</strong> <?php echo $atleta['cognome']; ?></p>
     <p><strong>Data di Nascita:</strong> <?php echo $atleta['data_nascita']; ?></p>

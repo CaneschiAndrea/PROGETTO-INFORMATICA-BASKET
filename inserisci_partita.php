@@ -45,18 +45,20 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #222; /* Colore di sfondo scuro */
+            color: #fff; /* Testo bianco */
             text-align: center;
             padding: 40px;
+            margin: 0;
         }
 
         .form-container {
             max-width: 400px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: #333; /* Colore di sfondo più scuro */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Ombra con opacità */
         }
 
         input {
@@ -64,10 +66,19 @@ $conn->close();
             padding: 10px;
             margin: 8px 0;
             box-sizing: border-box;
+            background-color: #444; /* Input di colore più scuro */
+            color: #fff; /* Testo bianco */
+            border: none;
+            border-radius: 4px;
+        }
+
+        input:focus {
+            outline: none;
+            background-color: #555; /* Input più scuro al focus */
         }
 
         button {
-            background-color: #4caf50;
+            background-color: #4caf50; /* Verde scuro */
             color: white;
             padding: 12px 20px;
             border: none;
@@ -76,7 +87,7 @@ $conn->close();
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #45a049; /* Verde più scuro al passaggio del mouse */
         }
 
         p {

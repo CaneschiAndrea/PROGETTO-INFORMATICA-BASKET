@@ -62,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212; /* Colore di sfondo scuro */
+            color: #fff; /* Colore del testo */
             text-align: center;
             padding: 40px;
             margin: 0;
@@ -71,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .confronta-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: #1f1f1f; /* Colore di sfondo della container */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -82,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: block;
             margin: 10px 0;
             font-size: 16px;
+            color: #fff; /* Colore del testo delle label */
         }
 
         select {
@@ -90,6 +92,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 8px 0;
             box-sizing: border-box;
             font-size: 16px;
+            background-color: #272727; /* Colore di sfondo degli input */
+            color: #fff; /* Colore del testo degli input */
+            border: none; /* Rimuove il bordo */
+            border-radius: 4px;
+        }
+
+        select:focus {
+            outline: none; /* Rimuove il focus border */
         }
 
         button {
@@ -110,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .result-container {
             margin-top: 20px;
             font-size: 16px;
+            color: #fff; /* Colore del testo dei risultati */
         }
 
         .back-button {

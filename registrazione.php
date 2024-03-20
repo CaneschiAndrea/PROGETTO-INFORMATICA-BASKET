@@ -54,7 +54,8 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212; /* Colore di sfondo scuro */
+            color: #fff; /* Colore del testo */
             margin: 0;
             display: flex;
             align-items: center;
@@ -64,14 +65,14 @@ $conn->close();
 
         .registrazione-container {
             text-align: center;
-            background-color: #fff;
+            background-color: #1f1f1f; /* Colore di sfondo della container */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #333;
+            color: #fff; /* Colore del testo dell'intestazione */
         }
 
         form {
@@ -81,6 +82,7 @@ $conn->close();
         label {
             display: block;
             margin-bottom: 8px;
+            color: #fff; /* Colore del testo delle etichette */
         }
 
         input {
@@ -88,6 +90,14 @@ $conn->close();
             padding: 10px;
             margin-bottom: 16px;
             box-sizing: border-box;
+            background-color: #272727; /* Colore di sfondo degli input */
+            color: #fff; /* Colore del testo degli input */
+            border: none; /* Rimuove il bordo */
+            border-radius: 4px;
+        }
+
+        input:focus {
+            outline: none; /* Rimuove il focus border */
         }
 
         button {
@@ -105,7 +115,7 @@ $conn->close();
 
         p {
             margin-top: 16px;
-            color: #666;
+            color: #ccc; /* Colore del testo dei paragrafi */
         }
 
         a {
