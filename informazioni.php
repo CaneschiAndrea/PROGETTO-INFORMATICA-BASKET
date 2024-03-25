@@ -6,45 +6,56 @@
     <title>Information - Project Basket</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #121212; /* Dark background color */
             color: #fff; /* Text color */
             text-align: center;
             padding: 40px;
             margin: 0;
+            opacity: 0; /* Inizialmente impostiamo l'opacità a 0 per l'effetto di fade in */
+            transition: opacity 0.5s ease-in-out; /* Transizione di opacità per l'effetto di fade in */
         }
 
         .info-container {
             max-width: 600px;
             margin: 0 auto;
             background-color: #1f1f1f; /* Container background color */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50; /* Header color (green) */
+            font-size: 28px; /* Larger font size for header */
+            margin-bottom: 20px;
         }
 
         p {
             margin: 10px 0;
-            color: #ccc; /* Paragraph text color */
+            font-size: 18px; /* Larger font size for paragraphs */
         }
 
         a {
-            color: #55acee; /* Link text color (blue) */
+            color: #007bff; /* Link text color (blue) */
+            text-decoration: none;
+            transition: color 0.3s ease; /* Smooth transition for link color */
         }
 
         a:hover {
-            color: #2795e9; /* Link text color on hover (darker blue) */
+            color: #0056b3; /* Link text color on hover (darker blue) */
         }
 
         .return-button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 20px;
-            background-color: #4caf50; /* Button background color (green) */
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #4CAF50; /* Button background color (green) */
             color: #fff; /* Button text color (white) */
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition for button background color */
         }
 
         .return-button:hover {
@@ -52,17 +63,18 @@
         }
 
         .hidden-message {
-            color: #333; /* Dark gray color for hidden message */
-            font-size: 12px; /* Smaller font size */
-            opacity: 0.5; /* Lower opacity for less visibility */
+            color: #666; /* Dark gray color for hidden message */
+            font-size: 14px; /* Smaller font size for hidden message */
+            margin-top: 20px;
+            opacity: 0.1;
         }
     </style>
 </head>
 <body>
 
 <div class="info-container">
-    <h2 id="info-heading" style="color: green">INFORMAZIONI</h2>
-    <p>Programmed by Andrea Caneschi</p>
+    <h2 id="info-heading">INFORMAZIONI</h2>
+    <p>Programmed by <strong>Andrea Caneschi</strong></p>
     <p>Personal Email: <a href="mailto:andrea.caneschi11@gmail.com">andrea.caneschi11@gmail.com</a></p>
     <p>School Email: <a href="mailto:caneschi.andrea@itismeucci.com">caneschi.andrea@itismeucci.com</a></p>
     <p>Instagram Profile: <a href="https://www.instagram.com/andrea.caneschi?igsh=MXdoNmpqMWFsYzN1YQ==" target="_blank">andrea.caneschi</a></p>
@@ -73,6 +85,11 @@
 </div>
 
 <script>
+    // Una volta che il contenuto della pagina è stato caricato, applichiamo l'effetto di fade in
+    document.addEventListener("DOMContentLoaded", function() {
+        document.body.style.opacity = 1; // Impostiamo l'opacità a 1 per mostrare il contenuto
+    });
+
     let clickCount = 0;
     const infoHeading = document.getElementById('info-heading');
 

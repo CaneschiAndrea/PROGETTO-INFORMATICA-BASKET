@@ -97,6 +97,28 @@ $conn->close();
             text-decoration: none;
             color: #0d6efd; /* Colore del link */
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container {
+            /* Rimuovi opacity e transform dal CSS originale */
+            animation: fadeIn 0.5s ease forwards; /* Applica l'animazione di fade-in */
+        }
+
+        p {
+            opacity: 0; /* Inizialmente invisibile */
+            animation: fadeIn 0.5s ease forwards; /* Applica l'animazione di fade-in */
+            animation-delay: 0.5s; /* Ritardo di 0.5 secondi */
+        }
     </style>
 </head>
 <body>

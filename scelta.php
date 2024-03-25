@@ -21,6 +21,12 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0; /* Inizialmente invisibile */
+            transition: opacity 0.5s ease; /* Transizione per il fade-in */
+        }
+
+        .scelta-container.show {
+            opacity: 1; /* Rende visibile con effetto di fade-in */
         }
 
         a {
@@ -31,11 +37,12 @@
             color: #fff; /* Colore del testo dei pulsanti */
             text-decoration: none;
             border-radius: 4px;
-            transition: background-color 0.3s ease; /* Effetto di transizione */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transizioni per colore di sfondo e trasformazione */
         }
 
         a:hover {
             background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
+            transform: scale(1.1); /* Ingrandisce leggermente al passaggio del mouse */
         }
 
         .logout-button {
@@ -91,6 +98,13 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.querySelector('.scelta-container');
+        setTimeout(function() {
+            container.classList.add('show');
+        }, 500); // Ritardo di 500ms per l'effetto di fade-in
+    });
+
     function updateClock() {
         var now = new Date();
         var hours = now.getHours().toString().padStart(2, '0');

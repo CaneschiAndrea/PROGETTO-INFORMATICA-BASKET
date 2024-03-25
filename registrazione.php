@@ -69,10 +69,17 @@ $conn->close();
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Effetto di transizione per animare la container */
+        }
+
+        .registrazione-container:hover {
+            transform: scale(1.02); /* Effetto di ingrandimento al passaggio del mouse */
         }
 
         h2 {
-            color: #fff; /* Colore del testo dell'intestazione */
+            color: #4caf50; /* Colore del testo dell'intestazione */
+            margin-bottom: 20px;
+            transition: color 0.3s ease; /* Effetto di transizione per il colore del testo */
         }
 
         form {
@@ -107,6 +114,7 @@ $conn->close();
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s ease; /* Effetto di transizione per il colore di sfondo */
         }
 
         button:hover {
@@ -121,6 +129,11 @@ $conn->close();
         a {
             text-decoration: none;
             color: #4caf50;
+            transition: color 0.3s ease; /* Effetto di transizione per il colore del link */
+        }
+
+        a:hover {
+            color: #45a049; /* Cambia il colore del link al passaggio del mouse */
         }
     </style>
 </head>
