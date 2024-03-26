@@ -102,7 +102,7 @@
         var container = document.querySelector('.scelta-container');
         setTimeout(function() {
             container.classList.add('show');
-        }, 500); // Ritardo di 500ms per l'effetto di fade-in
+        }, 500); 
     });
 
     function updateClock() {
