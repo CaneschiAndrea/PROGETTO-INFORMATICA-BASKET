@@ -82,8 +82,6 @@
 </head>
 <body>
 
-<div style="font-size: 24px; margin-bottom: 20px;" id="clock">Loading...</div>
-
 <div class="scelta-container">
     <h2>Scegli un'opzione</h2>
     <a href="visualizza_dati_atleta.php">Visualizza dati atleta</a>
@@ -102,21 +100,8 @@
         var container = document.querySelector('.scelta-container');
         setTimeout(function() {
             container.classList.add('show');
-        }, 500); 
+        }, 500);
     });
-
-    function updateClock() {
-        var now = new Date();
-        var hours = now.getHours().toString().padStart(2, '0');
-        var minutes = now.getMinutes().toString().padStart(2, '0');
-        var seconds = now.getSeconds().toString().padStart(2, '0');
-        var clockElement = document.getElementById('clock');
-        clockElement.textContent = hours + ':' + minutes + ':' + seconds;
-    }
-
-    setInterval(updateClock, 1000);
-
-    updateClock();
 </script>
 
 </body>

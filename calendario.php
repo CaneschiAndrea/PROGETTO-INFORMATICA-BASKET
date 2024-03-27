@@ -141,6 +141,7 @@ while ($dayOfMonth <= $numDays) {
 
 echo '</table>';
 ?>
-
+<br>
+<a href="scelta.php" class="back-button">Torna a Scelta</a>
 </body>
 </html>

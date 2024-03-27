@@ -32,7 +32,7 @@ $result = $conn->query($sql);
         }
 
         .elenco-container {
-            max-width: 400px;
+            max-width: 600px;
             margin: 0 auto;
             background-color: #1f1f1f; /* Colore di sfondo della container */
             padding: 20px;
@@ -40,9 +40,12 @@ $result = $conn->query($sql);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        a {
+        .atleta-item {
+            margin-bottom: 10px;
+        }
+
+        .atleta-link {
             display: block;
-            margin: 10px 0;
             padding: 10px;
             background-color: #4caf50; /* Colore di sfondo dei pulsanti */
             color: white; /* Colore del testo dei pulsanti */
@@ -50,7 +53,7 @@ $result = $conn->query($sql);
             border-radius: 4px;
         }
 
-        a:hover {
+        .atleta-link:hover {
             background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
         }
 
@@ -78,15 +81,14 @@ $result = $conn->query($sql);
     <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<a href='dettagli_atleta.php?id=" . $row['id'] . "'>" . $row['nome'] . " " . $row['cognome'] . "</a>";
+            echo "<div class='atleta-item'><a href='dettagli_atleta.php?id=" . $row['id'] . "' class='atleta-link'>" . $row['nome'] . " " . $row['cognome'] . "</a></div>";
         }
     } else {
-        echo "Nessun atleta presente nel database.";
+        echo "<p>Nessun atleta presente nel database.</p>";
     }
     ?>
 
 </div>
-
 
 <a href="scelta.php" class="back-button">Torna a Scelta</a>
 
