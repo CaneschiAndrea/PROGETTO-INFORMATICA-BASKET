@@ -76,6 +76,42 @@
 <h2>Calendario</h2>
 
 <?php
+// Connessione al database
+$servername = "localhost";
+$database = "progetto_basket";
+$username = "root";
+$password = "";
+$port = 3306;
+
+$conn = new mysqli($servername, $username, $password, $database, $port);
+
+if ($conn->connect_error) {
+    die("Connessione fallita: " . $conn->connect_error);
+}
+
+// Funzione per aggiungere un evento
+if (isset($_POST['submit'])) {
+    $date = $_POST['date'];
+    $event = $_POST['event'];
+
+    $sql = "INSERT INTO eventi (data, descrizione) VALUES ('$date', '$event')";
+    if ($conn->query($sql) === TRUE) {
+        echo "<p style='color: #4caf50;'>Evento aggiunto con successo!</p>";
+    } else {
+        echo "<p style='color: #f44336;'>Errore: " . $sql . "<br>" . $conn->error . "</p>";
+    }
+}
+
+// Ottieni eventi dal database
+$events = [];
+$sql = "SELECT data, descrizione FROM eventi";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $events[$row['data']][] = $row['descrizione'];
+    }
+}
+
 // Ottieni la data corrente
 $currentDate = date('Y-m-d');
 $currentDay = date('d');
@@ -122,10 +158,12 @@ while ($dayOfMonth <= $numDays) {
         echo '<input type="submit" name="submit" value="+">';
         echo '</form>';
 
-        // Se è stato inviato un evento, stampa il messaggio sotto la data corrispondente
-        if(isset($_POST['submit']) && $_POST['date'] == $currentYear . '-' . $month . '-' . str_pad($dayOfMonth, 2, '0', STR_PAD_LEFT)) {
-            $event = $_POST['event'];
-            echo '<p style="color: #aaa; font-size: 12px;">Evento aggiunto: ' . $event . '</p>';
+        // Mostra gli eventi salvati per il giorno corrente
+        $dateString = $currentYear . '-' . $month . '-' . str_pad($dayOfMonth, 2, '0', STR_PAD_LEFT);
+        if (isset($events[$dateString])) {
+            foreach ($events[$dateString] as $event) {
+                echo '<p style="color: #aaa; font-size: 12px;">' . htmlspecialchars($event) . '</p>';
+            }
         }
 
         echo '</td>';
@@ -140,6 +178,8 @@ while ($dayOfMonth <= $numDays) {
 }
 
 echo '</table>';
+
+$conn->close();
 ?>
 <br>
 <a href="scelta.php" class="back-button">Torna a Scelta</a>
