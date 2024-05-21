@@ -52,81 +52,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dettagli Atleta - Progetto Basket</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #222; /* Colore di sfondo scuro */
-            color: #fff; /* Testo bianco */
-            text-align: center;
-            padding: 40px;
-            margin: 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #222;
+        color: #fff;
+        text-align: center;
+        padding: 40px;
+        margin: 0;
+    }
 
-        .dettagli-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #333; /* Colore di sfondo più scuro */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Ombra con opacità */
-        }
+    .dettagli-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #333;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
 
-        p {
-            text-align: left;
-            color: #fff; /* Testo bianco */
-        }
+    p {
+        text-align: left;
+        color: #fff;
+    }
 
-        .delete-button {
-            background-color: #f44336; /* Rosso scuro */
-            color: #fff; /* Testo bianco */
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+    .delete-button, .back-button, .edit-button {
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
 
-        .delete-button:hover {
-            background-color: #d32f2f; /* Rosso più scuro al passaggio del mouse */
-        }
+    .delete-button {
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+    }
 
-        .success {
-            color: green;
-        }
+    .delete-button:hover {
+        background-color: #d32f2f;
+    }
 
-        .error {
-            color: red;
-        }
+    .success {
+        color: green;
+    }
 
-        .back-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 20px;
-            background-color: #3498db; /* Blu scuro */
-            color: #fff; /* Testo bianco */
-            text-decoration: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    .error {
+        color: red;
+    }
 
-        .back-button:hover {
-            background-color: #2980b9; /* Blu più scuro al passaggio del mouse */
-        }
+    .back-button {
+        background-color: #3498db;
+        color: #fff;
+        text-decoration: none;
+    }
 
-        .edit-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 20px;
-            background-color: #4caf50; /* Verde scuro */
-            color: #fff; /* Testo bianco */
-            text-decoration: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    .back-button:hover {
+        background-color: #2980b9;
+    }
 
-        .edit-button:hover {
-            background-color: #45a049; /* Verde più scuro al passaggio del mouse */
-        }
-    </style>
+    .edit-button {
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .edit-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
 </head>
 <body>
 

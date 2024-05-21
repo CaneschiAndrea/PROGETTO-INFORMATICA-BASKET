@@ -49,35 +49,36 @@ $conn->close();
             margin: 0;
         }
 
-        .data {
-            margin-bottom: 10px;
+        h2 {
+            color: #4caf50; /* Verde */
         }
 
-        .back-button {
+        .data {
+            margin-bottom: 10px;
+            color: #ddd; /* Testo grigio chiaro */
+        }
+
+        .back-button, .delete-button {
             display: inline-block;
-            background-color: #4caf50; /* Verde */
-            color: white;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 4px;
             margin-top: 20px;
+            transition: background-color 0.3s ease;
         }
 
-        .back-button:hover {
-            background-color: #45a049; /* Verde più scuro al passaggio del mouse */
+        .back-button {
+            background-color: #4caf50; /* Verde */
+            color: #fff; /* Testo bianco */
         }
 
         .delete-button {
             background-color: #f44336; /* Rosso */
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-top: 10px;
+            color: #fff; /* Testo bianco */
         }
 
-        .delete-button:hover {
-            background-color: #d32f2f; /* Rosso più scuro al passaggio del mouse */
+        .back-button:hover, .delete-button:hover {
+            filter: brightness(90%); /* Leggera riduzione della luminosità al passaggio del mouse */
         }
     </style>
 </head>
@@ -96,9 +97,6 @@ $conn->close();
 </div>
 <div class="data">
     <strong>Squadra 2:</strong> <?php echo $partita['squadra2']; ?>
-</div>
-<div class="data">
-    <strong>Luogo:</strong> <?php echo $partita['luogo']; ?>
 </div>
 <div class="data">
     <strong>Data Partita:</strong> <?php echo $partita['data_partita']; ?>

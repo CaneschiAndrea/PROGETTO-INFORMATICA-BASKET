@@ -10,28 +10,42 @@
             background-color: #121212; /* Colore di sfondo scuro */
             color: #fff; /* Colore del testo */
             text-align: center;
-            padding: 40px;
-            position: relative; /* Per posizionare l'elemento figlio in base a questa posizione */
+            padding: 40px 0; /* Modificato il padding per centrare verticalmente */
         }
 
-        .scelta-container {
-            max-width: 400px;
+        /* Aggiunta la regola per centrare orizzontalmente i contenitori principali */
+        #header,
+        #navbar,
+        #content,
+        #footer {
             margin: 0 auto;
-            background-color: #1f1f1f; /* Colore di sfondo della container */
+        }
+
+        /* Rimossi i commenti per le larghezze al 100% in #navbar e #news */
+        #navbar,
+        #news {
+            width: 100%;
+        }
+
+        #header {
+            background-color: #007bff; /* NBA Blue */
+            color: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            opacity: 0; /* Inizialmente invisibile */
-            transition: opacity 0.5s ease; /* Transizione per il fade-in */
+            text-align: center;
+            width: 100%;
         }
 
-        .scelta-container.show {
-            opacity: 1; /* Rende visibile con effetto di fade-in */
+        #navbar {
+            background-color: #222; /* Colore di sfondo della navbar */
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
         }
 
-        a {
-            display: block;
-            margin: 10px 0;
+        .option {
+            margin: 10px;
             padding: 12px 20px;
             background-color: #4caf50; /* Colore di sfondo dei pulsanti */
             color: #fff; /* Colore del testo dei pulsanti */
@@ -40,21 +54,34 @@
             transition: background-color 0.3s ease, transform 0.2s ease; /* Transizioni per colore di sfondo e trasformazione */
         }
 
-        a:hover {
+        .option:hover {
             background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
             transform: scale(1.1); /* Ingrandisce leggermente al passaggio del mouse */
         }
 
-        .logout-button {
-            background-color: #f44336; /* Colore di sfondo del pulsante di logout */
+        #news {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto; /* Centra le notizie */
+            text-align: left; /* Allinea il testo a sinistra */
         }
 
-        .logout-button:hover {
-            background-color: #d32f2f; /* Cambia il colore di sfondo del pulsante di logout al passaggio del mouse */
+        .news-item {
+            background-color: #222; /* Colore di sfondo delle news */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: none;
+            width: 100%;
         }
 
-        .info-button {
-            position: absolute;
+        .news-item.active {
+            display: block;
+        }
+
+        #footer {
+            position: fixed;
             bottom: 20px;
             right: 20px;
             width: 50px;
@@ -70,7 +97,7 @@
             transition: background-color 0.3s ease; /* Effetto di transizione */
         }
 
-        .info-button:hover {
+        #footer:hover {
             background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
         }
 
@@ -82,27 +109,37 @@
 </head>
 <body>
 
-<div class="scelta-container">
-    <h2>Scegli un'opzione</h2>
-    <a href="visualizza_dati_atleta.php">Visualizza dati atleta</a>
-    <a href="visualizza_dati_partita.php">Visualizza dati partita</a>
-    <a href="inserisci_partita.php">Inserisci partita</a>
-    <a href="confronta_atleti.php">Confronta due atleti</a>
-    <a href="aggiungi_dati_atleta.php">Aggiungi dati atleta</a> 
-    <a href="aggiungi_squadra.php">Aggiungi squadra</a>
-    <a href="calendario.php">Calendario Partite</a>
-    <a href="index.php" class="logout-button">Logout</a>
-    <a href="informazioni.php" class="info-button">?</a>
+<header id="header">
+    <h1>Progetto Basket</h1>
+</header>
+
+<nav id="navbar">
+    <a href="visualizza_dati_atleta.php" class="option">Visualizza dati atleta</a>
+    <a href="visualizza_dati_partita.php" class="option">Visualizza dati partita</a>
+    <a href="inserisci_partita.php" class="option">Inserisci partita</a>
+    <a href="confronta_atleti.php" class="option">Confronta due atleti</a>
+    <a href="aggiungi_dati_atleta.php" class="option">Aggiungi dati atleta</a>
+    <a href="aggiungi_squadra.php" class="option">Aggiungi squadra</a>
+    <a href="calendario.php" class="option">Calendario Partite</a>
+</nav>
+<br>
+<div id="content">
+    <h2>Ultime Notizie:</h2>
+    <!-- Simulated news -->
+    <div id="news">
+        <div class="news-item active">
+            <h3>LeBron James firma con i Los Angeles Lakers</h3>
+            <p>LeBron James ha firmato un contratto quadriennale da 154 milioni di dollari con i Los Angeles Lakers, secondo la sua agenzia, Klutch Sports Group. Questa segna la terza volta nella carriera di LeBron che cambia squadra in free agency.</p>
+        </div>
+        <div class="news-item">
+            <h3>Golden State Warriors win their third NBA Championship in four years</h3>
+            <p>The Golden State Warriors have secured their third NBA championship in four years after defeating the Cleveland Cavaliers in a four-game sweep. Kevin Durant was named Finals MVP for the second consecutive year.</p>
+        </div>
+        <!-- Add more news items -->
+    </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var container = document.querySelector('.scelta-container');
-        setTimeout(function() {
-            container.classList.add('show');
-        }, 500);
-    });
-</script>
+<a href="informazioni.php" id="footer">?</a>
 
 </body>
 </html>

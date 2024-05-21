@@ -71,13 +71,38 @@ $result = $conn->query($sql);
         .back-button:hover {
             background-color: #d32f2f; /* Cambia il colore di sfondo del pulsante al passaggio del mouse */
         }
+
+        .search-form {
+            margin-top: 20px;
+        }
+
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
 <div class="elenco-container">
     <h2>Elenco Atleti</h2>
-
+    <input type="text" id="search-input" class="search-input" placeholder="Cerca atleta per nome o cognome">
+        <br>
+        <br>
     <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -91,10 +116,34 @@ $result = $conn->query($sql);
 </div>
 
 <a href="scelta.php" class="back-button">Torna a Scelta</a>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchInput = document.getElementById('search-input');
+        var atletaItems = document.querySelectorAll('.atleta-item');
 
+        searchInput.addEventListener('input', function() {
+            var searchTerm = this.value.trim().toLowerCase();
+
+            atletaItems.forEach(function(item) {
+                var nome = item.getAttribute('data-nome').toLowerCase();
+                var cognome = item.getAttribute('data-cognome').toLowerCase();
+                var searchString = nome + " " + cognome;
+
+                if (searchString.indexOf(searchTerm) !== -1) {
+                    item.style.display = 'block'; // Mostra l'atleta se corrisponde alla ricerca
+                } else {
+                    item.style.display = 'none'; // Nascondi l'atleta altrimenti
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
 
 <?php
 $conn->close();
 ?>
+
+
+
