@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $database = "progetto_basket";
-$username = "root";  
-$password = "";     
+$username = "root";
+$password = "";
 $port = 3306;
 
 $conn = new mysqli($servername, $username, $password, $database, $port);
@@ -106,13 +106,12 @@ $result = $conn->query($sql);
     <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<div class='atleta-item'><a href='dettagli_atleta.php?id=" . $row['id'] . "' class='atleta-link'>" . $row['nome'] . " " . $row['cognome'] . "</a></div>";
+            echo "<div class='atleta-item' data-nome='" . $row['nome'] . "' data-cognome='" . $row['cognome'] . "'><a href='dettagli_atleta.php?id=" . $row['id'] . "' class='atleta-link'>" . $row['nome'] . " " . $row['cognome'] . "</a></div>";
         }
     } else {
         echo "<p>Nessun atleta presente nel database.</p>";
     }
     ?>
-
 </div>
 
 <a href="scelta.php" class="back-button">Torna a Scelta</a>
@@ -129,7 +128,7 @@ $result = $conn->query($sql);
                 var cognome = item.getAttribute('data-cognome').toLowerCase();
                 var searchString = nome + " " + cognome;
 
-                if (searchString.indexOf(searchTerm) !== -1) {
+                if (searchString.includes(searchTerm)) {
                     item.style.display = 'block'; // Mostra l'atleta se corrisponde alla ricerca
                 } else {
                     item.style.display = 'none'; // Nascondi l'atleta altrimenti
@@ -144,6 +143,3 @@ $result = $conn->query($sql);
 <?php
 $conn->close();
 ?>
-
-
-
