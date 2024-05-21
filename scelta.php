@@ -33,6 +33,7 @@
             padding: 20px;
             text-align: center;
             width: 100%;
+            position: relative; /* Posizione relativa per eventuali contenuti interni */
         }
 
         #navbar {
@@ -101,6 +102,27 @@
             background-color: #45a049; /* Cambia il colore di sfondo al passaggio del mouse */
         }
 
+        #logout {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #ff4757; /* Colore di sfondo del pulsante di logout */
+            color: #fff; /* Colore del testo del pulsante di logout */
+            border-radius: 50%; /* Per rendere il pulsante un cerchio */
+            font-size: 18px;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease; /* Effetto di transizione */
+        }
+
+        #logout:hover {
+            background-color: #e84118; /* Cambia il colore di sfondo al passaggio del mouse */
+        }
+
         h2 {
             margin-top: 0;
             color: #4caf50; /* Colore del titolo */
@@ -132,14 +154,31 @@
             <p>LeBron James ha firmato un contratto quadriennale da 154 milioni di dollari con i Los Angeles Lakers, secondo la sua agenzia, Klutch Sports Group. Questa segna la terza volta nella carriera di LeBron che cambia squadra in free agency.</p>
         </div>
         <div class="news-item">
-            <h3>Golden State Warriors win their third NBA Championship in four years</h3>
-            <p>The Golden State Warriors have secured their third NBA championship in four years after defeating the Cleveland Cavaliers in a four-game sweep. Kevin Durant was named Finals MVP for the second consecutive year.</p>
+            <h3>I Golden State Warriors vincono il loro terzo campionato NBA in quattro anni</h3>
+            <p>I Golden State Warriors si sono assicurati il ​​terzo campionato NBA in quattro anni dopo aver sconfitto i Cleveland Cavaliers in quattro partite. Kevin Durant è stato nominato MVP delle finali per il secondo anno consecutivo.</p>
         </div>
         <!-- Add more news items -->
     </div>
 </div>
 
 <a href="informazioni.php" id="footer">?</a>
+<a href="index.php" id="logout">⏻</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.news-item');
+        const itemCount = items.length;
+
+        const showNextItem = () => {
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % itemCount;
+            items[currentIndex].classList.add('active');
+        };
+
+        setInterval(showNextItem, 10000); // Cambia notizia ogni 10 secondi
+    });
+</script>
 
 </body>
 </html>
