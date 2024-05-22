@@ -79,6 +79,8 @@
     <p>School Email: <a href="mailto:caneschi.andrea@itismeucci.com">caneschi.andrea@itismeucci.com</a></p>
     <p>Instagram Profile: <a href="https://www.instagram.com/andrea.caneschi?igsh=MXdoNmpqMWFsYzN1YQ==" target="_blank">andrea.caneschi</a></p>
     <p>YouTube Channel: <a href="https://www.youtube.com/@andre1105--" target="_blank">@andre1105--</a></p>
+    <p>Threads: <a href="https://www.threads.net/@andrea.caneschi" target="_blank">@andrea.caneschi</a></p>
+    <p>GitHUB: <a href="https://github.com/CaneschiAndrea"  target="_blank">CaneschiAndrea</a></p>
     <a href="scelta.php" class="return-button">TORNA A SCELTA</a>
     <p class="hidden-message">Questa pagina nasconde un tesoro. Se lo trovi, meriti una moneta d'oro!</p>
     <p class="hidden-message">Indizio!! Qualcosa deve essere cliccato ripetutamente.</p>
