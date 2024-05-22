@@ -62,13 +62,25 @@ $conn->close();
             background-color: #444; /* Grigio più scuro al passaggio del mouse */
             cursor: pointer; /* Cambia il cursore al passaggio del mouse */
         }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 
 <h2 style="color: green">Elenco Partite</h2>
 
-<table>
+<input type="text" id="searchInput" class="search-input" onkeyup="filterTable()" placeholder="Cerca per squadra...">
+
+<table id="partiteTable">
     <thead>
         <tr>
             <th>Squadra 1</th>
@@ -87,6 +99,30 @@ $conn->close();
     </tbody>
 </table>
 <a href="scelta.php" class="back-button">Torna a Scelta</a>
+
+<script>
+function filterTable() {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("partiteTable");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none";
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                }
+            }
+        }
+    }
+}
+</script>
 
 </body>
 </html>
