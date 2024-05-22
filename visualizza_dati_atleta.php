@@ -100,9 +100,9 @@ $result = $conn->query($sql);
 
 <div class="elenco-container">
     <h2>Elenco Atleti</h2>
+    <p><strong>Numero totale di atleti: <?php echo $result->num_rows; ?></strong></p> <!-- Aggiunto il conteggio degli atleti -->
     <input type="text" id="search-input" class="search-input" placeholder="Cerca atleta per nome o cognome">
-        <br>
-        <br>
+    <br><br>
     <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
